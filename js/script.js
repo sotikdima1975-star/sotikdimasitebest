@@ -19,35 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollTop = scrollTop;
     });
 
-    // Continue button animation
-    const continueBtn = document.querySelector('.continue-btn');
-    if (continueBtn) {
-        continueBtn.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-        });
-        
-        continueBtn.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-        
-        continueBtn.addEventListener('click', function() {
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 150);
-        });
-    }
-
-    // Status bar animation
-    const dots = document.querySelectorAll('.status-bar .dot');
-    let currentDot = 0;
-    
-    setInterval(() => {
-        dots.forEach(dot => dot.style.backgroundColor = '#444');
-        dots[currentDot].style.backgroundColor = '#666';
-        currentDot = (currentDot + 1) % dots.length;
-    }, 800);
-
     // Mobile menu functionality
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
