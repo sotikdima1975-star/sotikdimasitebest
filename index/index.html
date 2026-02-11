@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СайтСотика</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/script.js" defer></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+
+        
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111;
+            z-index: -2;
+        }
+        
+        .grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#333 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .left-ui {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .left-ui .line {
+            width: 1px;
+            height: 80px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        
+        .left-ui .indicator {
+            width: 4px;
+            height: 4px;
+            background-color: #666;
+            border-radius: 50%;
+            margin: 8px 0;
+            display: inline-block;
+        }
+        
+        .right-ui {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .right-ui .line {
+            width: 1px;
+            height: 60px;
+            background-color: #333;
+            margin: 25px 0;
+        }
+        
+        .right-ui .indicator {
+            width: 3px;
+            height: 3px;
+            background-color: #666;
+            border-radius: 50%;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        
+        .main-screen {
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top: 80px;
+            z-index: 1;
+        }
+        
+        .core {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            width: 400px;
+            pointer-events: none;
+        }
+        
+        .continue-btn {
+            pointer-events: auto;
+        }
+        
+        .core h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .divider {
+            width: 100px;
+            height: 1px;
+            background-color: #555;
+            margin: 20px auto;
+        }
+        
+        .core p {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        
+        .continue-btn {
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #aaa;
+            border: 1px solid #555;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .continue-btn:hover {
+            background-color: #222;
+            color: #fff;
+            border-color: #777;
+        }
+        
+        .status-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .status-bar .dot {
+            width: 6px;
+            height: 6px;
+            background-color: #444;
+            border-radius: 50%;
+        }
+        
+        @media (max-width: 768px) {
+            .left-ui, .right-ui {
+                display: none;
+            }
+            
+            .core {
+                width: 300px;
+            }
+            
+            .core h1 {
+                font-size: 2rem;
+            }
+            
+            .core p {
+                font-size: 1rem;
+            }
+            
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            .main-menu {
+                gap: 15px;
+            }
+            
+            .menu-item {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Хедер по ТЗ: премиальный, минималистичный, 5 слоёв фона, фиксирован сверху -->
+    <header class="sotik-header">
+        <!-- Белая накладка (верхняя) -->
+        <div class="sotik-header__white-layer"></div>
+
+        <div class="sotik-header__inner">
+
+            <div class="sotik-header__brand">
+                <span class="sotik-header__logo">S</span>
+                <span class="sotik-header__title">СайтСотика</span>
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="mobile-menu">
+                <a href="/siteofsotikbest/index/index.html" class="nav-link active">Главная</a>
+                <a href="/pages/about-me/index.html" class="nav-link">Обо мне</a>
+                <a href="/pages/games/index.html" class="nav-link">Игры</a>
+                <a href="/pages/stream/index.html" class="nav-link">Стрим</a>
+                <a href="/pages/team/index.html" class="nav-link">Команда</a>
+                <a href="/pages/partners/index.html" class="nav-link">Партнеры</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+
+
+
+    <div class="background"></div>
+    <div class="grid"></div>
+    
+
+    
+
+</body>
+</html>
